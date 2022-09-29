@@ -1,0 +1,409 @@
+\documentclass[dvipdfmx,a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[dvipdfmx]{hyperref} %リンクを有効にする
+\usepackage{url} %同上
+\usepackage{amsmath,amssymb} %もちろん
+\usepackage{amsfonts,amsthm,mathtools} %もちろん
+\usepackage{braket,physics} %あると便利なやつ
+\usepackage{bm} %ラプラシアンで使った
+\usepackage[top=30truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry} %余白設定
+\usepackage{latexsym} %ごくたまに必要になる
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{otf} %宗教上の理由でmin10が嫌いなので
+
+
+\usepackage[all]{xy}
+\usepackage{amsthm,amsmath,amssymb,comment}
+\usepackage{amsmath}    % \UTF{00E6}\UTF{0095}°\UTF{00E5}\UTF{00AD}\UTF{00A6}\UTF{00E7}\UTF{0094}¨
+\usepackage{amssymb}  
+\usepackage{color}
+\usepackage{amscd}
+\usepackage{amsthm}  
+\usepackage{wrapfig}
+\usepackage{comment}	
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{pxrubrica}
+\usepackage{enumitem}
+\usepackage{mathrsfs} 
+
+\setstretch{1.2}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}} 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}} 
+\newcommand{\Sin}{\text{Sin}^{-1}} 
+\newcommand{\Cos}{\text{Cos}^{-1}} 
+\newcommand{\Tan}{\text{Tan}^{-1}} 
+\newcommand{\invsin}{\text{Sin}^{-1}} 
+\newcommand{\invcos}{\text{Cos}^{-1}} 
+\newcommand{\invtan}{\text{Tan}^{-1}} 
+\newcommand{\Area}{\text{Area}}
+\newcommand{\vol}{\text{Vol}}
+\newcommand{\maru}[1]{\raise0.2ex\hbox{\textcircled{\tiny{#1}}}}
+\newcommand{\sgn}{{\rm sgn}}
+%\newcommand{\rank}{{\rm rank}}
+
+
+
+   %当然のようにやる．
+\allowdisplaybreaks[4]
+   %もちろん．
+%\title{第1回. 多変数の連続写像 (岩井雅崇, 2020/10/06)}
+%\author{岩井雅崇}
+%\date{2020/10/06}
+%ここまで今回の記事関係ない
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+
+\theoremstyle{definition}
+\newtheorem{thm}{定理}
+\newtheorem{lem}[thm]{補題}
+\newtheorem{prop}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{claim}[thm]{主張}
+\newtheorem{dfn}[thm]{定義}
+\newtheorem{dfnthm}[thm]{定義と定理}
+\newtheorem{rem}[thm]{注意}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{予想}
+\newtheorem{prob}[thm]{問題}
+\newtheorem{rema}[thm]{補足}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+
+%ここから本文．
+\begin{document}
+%\maketitle
+
+
+\begin{center}
+{\Large 1-4. 多様体の復習・多様体の例・接ベクトル空間}
+\end{center}
+\begin{flushright}
+ 岩井雅崇 2022/10/07
+\end{flushright}
+
+講義では多様体の復習・多様体の例・接ベクトル空間を4回かけて行う(と聞いている). ただ演習では問題作成の都合上, 1-4回の内容をまとめた. なお今回の演習問題は難易度が高いため, 解けない場合は適宜教科書やインターネット, TA・教官に頼っても良い. (わからなければこちらからヒントを出していきます).
+
+\vspace{22pt}
+
+\begin{comment}
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[多様体の定義]
+    $r$を1以上の自然数または$\infty$とする. 位相空間$M$が次の条件を満たすとき, $C^r$級微分可能多様体と呼ぶ
+    \begin{enumerate}
+    \item $M$はハウスドルフ空間である.
+    \item $M$は$m$次元の座標近傍$\{ (U_{\alpha}, \varphi_{\alpha})\}_{\alpha \in A}$で被覆される.
+     ここで$(U_{\alpha}, \varphi_{\alpha})$が$m$次元の座標近傍であるとは, ある$\R^m$の開集合$U'_{\alpha}$があって$\varphi_{\alpha} : U_{\alpha} \rightarrow U'_{\alpha}$は同相写像である.
+     \item $U_{\alpha} \cap U_{\beta} = \varnothing$なる$\alpha, \beta \in A$について
+     $$
+     \varphi_{\beta}: \circ \varphi_{\alpha}: \varphi_{\alpha}(U_{\alpha}\cap U_{\beta})
+     \rightarrow  \varphi_{\beta}(U_{\alpha}\cap U_{\beta})
+     $$
+     は$C^r$級写像である.
+       \end{enumerate}
+
+    \end{dfn}
+    \end{tcolorbox}
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[接ベクトル空間]
+$M$を$C^1$級多様体とし, $(x_1, \ldots, x_m)$を点$p \in M$の局所座標系とする. 
+$h$
+
+    \end{dfn}
+    \end{tcolorbox}
+\end{comment}
+
+
+
+多様体の作り方は大きく分けて次に分けられる.
+\begin{itemize}
+
+\item 多様体$M,N$について, その直積$M \times N$は多様体
+\item 多様体$M$の開集合$U$は多様体.
+\item 多様体間の写像$f : M \rightarrow N$と$y \in N$について, $f^{-1}(y)$は"だいたい"$M$の部分多様体. 
+これは次の定理を用いる.
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}[][多様体の基礎 定理15-1]
+    
+$f : M \rightarrow N$を多様体の間の$C^r$級写像とする. さらに$q \in N$を正則値であると仮定する. 
+$f^{-1}(q) \neq \varnothing $ならば, $f^{-1}(q) $は$\dim M - \dim N$次元の$C^r$級部分多様体である.
+
+ここで$q \in N$が$f : M \rightarrow N$の正則値であるとは, 任意の$p \in f^{-1}(q)$について,
+微分写像
+$$
+(df)_{p} : T_{p}(M) \rightarrow T_{f(p)}(N)
+$$
+が全射であることとする.
+    \end{thm}
+    \end{tcolorbox}
+\item 多様体$M$を同値関係$\sim$で割ってできる多様体$M/\sim$. ただし常に$M/\sim$が多様体になるとは限らない.\footnote{私が学部生だったとき群$G$が多様体$M$に固定点自由かつ真性不連続に作用している場合の内容をやった. 調べてみると担当教官がその道のプロであることがわかった. } 
+参考までに次の事実が知られている.[リー群と表現論 第6章]「Lie群$G$が多様体$M$に推移的かつ連続に作用しているとき, $G_{x} = \{g\in G| gx =x \}(x \in M)$は閉部分群になり$G/G_{x}$は$M$と$C^{\infty}$微分同相となる.」%調べたところ群$G$が多様体$M$に作用している場合は次のような判定法がある.(これは事実として)
+\end{itemize}
+
+講義ではやらないが演習でちょっと使う重要な事実なので次の内容もまとめておく.
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfnthm}[][埋め込みとはめ込み]
+    $f : M \rightarrow N$を多様体の間の$C^r$級写像とする. 
+    \begin{itemize}
+    \item $f$が\underline{はめ込み}であるとは, 任意の点$p \in M$について微分写像$(df)_{p} : T_{p}(M) \rightarrow T_{f(p)}(N)$が単射であること.
+    \item $f$が\underline{埋め込み}であるとは, $f$がはめ込みであり, $f : M \rightarrow f(M)$が同相であることとする． ここで$f(M)$には$N$の相対位相を入れる. このとき$f(M)$は$N$の部分多様体であることが知られている. 
+    \end{itemize}
+
+    \end{dfnthm}
+    \end{tcolorbox}
+\newpage
+
+\begin{enumerate}[label=\textbf{問}1.\arabic*]
+%\item 次を示せ.
+	%\begin{enumerate}
+	\item $^{*}$ Give an example of a topological space that is connected but not path-connected. %連結だが弧状連結でない位相空間の例をあげよ.
+	\item $^{*}$ Show that any connected manifold is path-connected. %連結な多様体は弧状連結であることをしめせ. 
+	%\end{enumerate}
+\item 次の問いに答えよ．
+	\begin{enumerate}
+	\item 実数の集合$\R$について, 同値関係$\sim_{1}$を
+	$$
+	x \sim_{1} y \Leftrightarrow x - y \in \Z
+	$$
+	とし$\R / \sim_{1}$に商位相を入れる. このとき$\R / \sim_{1}$は多様体になることを示せ.
+	\item 実数の集合$\R$について, 同値関係$\sim_{2}$を
+	$$
+	x \sim_{2} y \Leftrightarrow x - y \in \Q
+	$$
+	とし$\R / \sim_{2}$に商位相を入れる.  このとき$\R / \sim_{2}$は多様体とならないことを示せ.
+	\end{enumerate}
+	
+\item \label{sphere} $S^{m} := \{ (x_1, x_2, \ldots, x_{m+1})| \sum_{i=1}^{m+1} x_{i}^{2} = 1 \}$とおく. $S^{m}$が$m$次元の$C^{\infty}$級多様体であることを2通りの方法で示したい. 次の問いに答えよ. 
+	\begin{enumerate}
+	\item $N=(0,0,\ldots, 1),S=(0,0,\ldots, -1)$とし, $U_{N} = S_{m} \setminus N$, $U_{S} = S_{m} \setminus S$とおく. 
+$$
+\begin{array}{ccccc}
+\varphi_{N}: &U_{N}& \rightarrow & \R^{m} & \\
+&(x_{1},x_{2}, \ldots ,x_{m+1})& \longmapsto &(\frac{x_{1}}{1-x_{m+1}}, \ldots, \frac{x_{m}}{1-x_{m+1}})&
+\end{array}
+$$	
+$$
+\begin{array}{ccccc}
+\varphi_{S}: &U_{S}& \rightarrow & \R^{n} & \\
+&(x_{1}, x_{2}, \ldots, x_{n+1})& \longmapsto &(\frac{x_1}{1 + x_{m+1}}, \ldots, \frac{x_m}{1+x_{m+1}})&
+\end{array}
+$$	
+とおく. $\{(U_N, \varphi_N), (U_S, \varphi_S) \}$が$S^m$の座標近傍系を与えることを示し, これにより$S^{m}$は$m$次元の$C^{\infty}$級多様体となることを示せ.
+	\item $f : \R^{m+1} \rightarrow \R$となる$C^{\infty}$級写像で$f^{-1}(1) = S^{m}$かつ$1 \in \R$が$f$の正則値であるようなものを一つ求めよ. またこれを用いて$S^{m}$は$m$次元の$C^{\infty}$級多様体であることを示せ. 
+	\end{enumerate}
+
+\item $i : S^{m} \rightarrow \R^{m+1} $を包含写像とする. 次の問いに答えよ.
+\begin{enumerate}
+	\item 任意の点$a \in S^{m}$について, 微分写像$(di)_{a} : T_{a}S^{m} \rightarrow T_{a}\R^{m+1}$は単射であることをしめせ.
+	\item $a \in S^{m}$を$S^{m}$の点とする. $(di)_{a} $が単射であることと$T_{a}\R^{m+1} \cong \R^{m+1}$により$T_{a}S^{m}  \subset \R^{m+1} $とみなす. 
+	このとき
+	$$
+	T_{a}S^{m} = \{ v \in \R^{m+1} | <a,v> = 0\}
+	$$
+	となることを示せ. ここで$<\bullet, \bullet>$は$ \R^{m+1}$上のユークリッド内積とする. 
+\end{enumerate}
+ 
+\newpage 
+\item $f : \C \rightarrow \C$を$f(z) = z(z+1)$とする. 次の問いに答えよ.
+	\begin{enumerate}
+	\item $z = x + \sqrt{-1} y$によって$\C$に座標$(x,y)$を入れ$f$を座標表示せよ.
+	\item $z \in \C$においてヤコビ行列を求めよ.
+	\item $(df)_{p} : T_{z}\C \rightarrow T_{z}\C$が同型でない$z$を全て求めよ.
+	%\item $i :\C \rightarrow \C\mathbb{P}^{1}$を$i(z) = (z:1)$とすることにより, $\C$を$\C\mathbb{P}^{1}$の開部分多様体と見なす.  ある$F : \C\mathbb{P}^{1} \rightarrow \C\mathbb{P}^1$となる$C^{\infty}$級写像で$F|_{\C} = f$となるものがあることを示せ. 
+	\end{enumerate}
+
+
+\item (多様体の基礎 11章) $\C^{n+1} \setminus \{ 0\}$について, 同値関係$\sim$を
+	$$
+	z \sim w \Leftrightarrow \text{0でない複素数$\alpha$が存在して$z = \alpha w$}
+	$$
+	と定義する.$ \C\mathbb{P}^{n}:= (\C^{n+1} \setminus \{ 0\})/\sim$と書き複素射影空間と呼ぶ. 以下$z = (z_{1}, z_{2}, \ldots, z_{n+1})$を$\C\mathbb{P}^{n}$の元とみなしたものを$(z_{1}: \cdots : z_{n+1})$と書き複素同次座標と呼ぶ.
+	次の問いに答えよ.
+	\begin{enumerate}
+	\item $\C\mathbb{P}^{n}$がハウスドルフであることを示せ.
+	\item $U_{i} = \{ (z_{1}:z_{2}: \ldots : z_{n+1}) | z_{i}\neq 0\}$とおき, 
+$$
+\begin{array}{ccccc}
+\varphi_{i}: &U_{i}& \rightarrow & \C^{n} & \\
+&(z_{1}:z_{2}: \ldots : z_{n+1})& \longmapsto &(\frac{z_1}{z_i}, \ldots, \frac{z_{i-1}}{z_i}, \frac{z_{i+1}}{z_i}, \ldots, \frac{z_n}{z_i})&
+\end{array}
+$$	
+と定める. $\{ (U_i , \varphi_{i})\}_{i=1}^{n+1}$は座標近傍系となることを示し, $\C\mathbb{P}^{n}$は(実)$2n$次元の$C^{\infty}$級多様体であることを示せ. 
+	\end{enumerate}
+\item %$S^2 = \{ (x_1, x_2, x_3)| x_{1}^{2} + x_{2}^{2} + x_{3}^{2}= 1 \}$とおく. 
+$\C\mathbb{P}^{1}$と$S^2$は$C^{\infty}$級微分同相であることをしめせ. 
+
+\item $i :\C \rightarrow \C\mathbb{P}^{1}$を$i(z) = (z:1)$とすることにより, $\C$を$\C\mathbb{P}^{1}$の開部分多様体と見なす.  $f : \C \rightarrow \C$を$f(z) = z^2 +1$とおく. このときある$F : \C\mathbb{P}^{1} \rightarrow \C\mathbb{P}^1$となる$C^{\infty}$級写像で$F|_{\C} = f$となるものがあることを示せ. 
+\item (多様体の基礎 11章)
+	\begin{enumerate}
+	\item  
+	$$
+\begin{array}{ccccc}
+\pi: &S^{2n+1}& \rightarrow & \C\mathbb{P}^{n} & \\
+&(x_1, x_2, \ldots, x_{2n+1}, x_{2n+2}) & \longmapsto &(x_1 + \sqrt{-1}x_2, x_3 + \sqrt{-1}x_4,\ldots, x_{2n+1}+ \sqrt{-1}x_{2n+2})&
+\end{array}
+$$
+とおく． この写像が全射$C^{\infty}$級写像であることを示せ.
+\item $\C\mathbb{P}^{n} $はコンパクトであることを示せ. 
+	\item 任意の$z \in \C\mathbb{P}^{n}$について$f^{-1}(z)$は$S^{1}$と位相同相であることを示せ.
+	\end{enumerate}
+
+\item $^{*}$ $n$を2以上の整数とする. $H = \{ (z_{1}:z_{2}: \ldots : z_{n+1}) \in  \C\mathbb{P}^{n} |  z_{1} + \cdots+ z_{n+1} =0\}$が$C^{\infty}$級多様体であることを示し, その次元を求めよ.
+
+\item $^{**}$ $n$を2以上の整数とする. $Q= \{ (z_{1}:z_{2}: \ldots : z_{n+1}) \in \C\mathbb{P}^{n} |  z_{1}^{2} + \cdots +z_{n+1}^{2} =0\}$が$C^{\infty}$級多様体であることを示し, その次元を求めよ.
+
+
+\item $M(n,\R)$を$n\times n$行列の全体の集合とする.  $M(n,\R)$を$\R^{n^2}$と同一視する. 特に$M(n,\R)$が$n^2$次元$C^{\infty}$級多様体となる. 次の問いに答えよ.
+	\begin{enumerate}
+	%\item $M(n,\R)$は$\R^{n^2}$と同一視できることを示せ. 特に$M(n,\R)$が$n^2$次元$C^{\infty}$級多様体となる.
+	\item $GL(n, \R) = \{ A \in M(n,\R) | \det A \neq 0\}$が$C^{\infty}$級多様体であることを示し, その次元を求めよ. 
+	\item $SL(n, \R) = \{ A \in M(n,\R) | \det A =1\}$が$C^{\infty}$級多様体であることを示し, その次元を求めよ. 
+	\end{enumerate}
+\item  (多様体の基礎 15章) $O(n, \R) = \{ A \in M(n,\R) | {}^{t}AA =E\}$が$C^{\infty}$級多様体であることを示し, その次元を求めよ. 
+	\item  $SO(n, \R) = \{ A \in M(n,\R) | \det A =1, {}^{t}AA =E\}$が$C^{\infty}$級多様体であることを示し, その次元を求めよ. 
+	\item $SO(2, \R) $が$S^1$と$C^{\infty}$級微分同相であることを示せ. 
+	
+\item  $^{*}$ 次の問いに答えよ
+	\begin{enumerate}
+	\item $GL(n, \R) $は弧状連結ではないことを示せ.
+	\item $GL(n, \R)_{+}=\{ A \in M(n,\R) | \det A > 0\}$は弧状連結であること示せ.
+	\end{enumerate}
+
+\item $^{*}$ $SO(n, \R) $は弧状連結であることを示せ.
+
+\item (多様体の基礎 15章) $k,m$を$1 \ge k \ge m$となる自然数とし$M_{k, m}$を実数係数$k \times m$行列全体とする.
+$$
+V_{k,m}= \{ A \in M_{k, m}| A ({}^{t}A) = E\}
+$$
+とする. 次の問いにこたえよ.
+	\begin{enumerate}
+	\item $f : \R^{2m} \rightarrow \R^3$を次で定める.
+$$
+\begin{array}{ccccc}
+f: &\R^{2m}& \rightarrow & \R^{3} & \\
+&(x_{1}, \ldots, x_m, y_1, \ldots, y_m) & \longmapsto & 
+(\sum_{i=1}^{m} x_{i}^{2}, \sum_{i=1}^{m} y_{i}^{2}, \sum_{i=1}^{m} x_{i}y_{i})&
+\end{array}
+$$
+	$(x_{1}, \ldots, x_m, y_1, \ldots, y_m) \in \R^m$での$f$のヤコビ行列を求めよ
+	\item $V_{2,m}$は$\R^{2m}$の$C^{\infty}$級部分多様体であることを示し, その次元を求めよ.
+	\item$V_{3,m}$は$\R^{3m}$の$C^{\infty}$級部分多様体であることを示し, その次元を求めよ.
+	\end{enumerate}
+	
+\item $^{*}$ 
+	$$
+\begin{array}{ccccc}
+f: &S^{3}& \rightarrow & \R & \\
+&(x,y,z,w) & \longmapsto & xy - zw&
+\end{array}
+$$
+とおく.  $f^{-1}(0)$は$S^{3}$の部分多様体であることをしめせ.
+
+\newpage
+\item $^{*}$ 
+$$
+M = \{ (x,y,z,w) \in\R^4  | 2x^2 + 2 = 2 z^2 + w^2, 3x^2 + y^2 = z^2 + w^2\}
+$$
+とおく.　次の問いに答えよ.
+	\begin{enumerate}
+	\item $M$は$\R^4$の部分多様体であることを示し, その次元を求めよ
+	\item $F : M \rightarrow \R^2$を$F(x,y,z,w) = (x^2, y^2)$とする. $p=(X,Y) \in \R^2$について$F^{-1}(p)$の元の個数を求めよ.
+	\item $M$はコンパクトかどうか判定せよ
+	\end{enumerate}
+
+
+\item $*$ $M,N$を連結な$C^\infty$級多様体とし, $f : M \rightarrow N$を$C^\infty$級写像とする. 任意の$p \in M$について$(df)_{p} : T_{p}(M) \rightarrow T_{f(p)}(N)$が零写像であるならば, $f$は$M$を$N$の一点へ写す定値写像であることを示せ. 
+
+\item $^{*}$  $M,N$をそれぞれ$m$次元, $n$次元の$C^{\infty}$多様体とし$C^{\infty}$写像$f : M \rightarrow N$とする. さらに$N$は連結コンパクトで$m \ge n$であると仮定する.
+任意の$x \in M$について$(df)_{p} : T_{p}(M) \rightarrow T_{f(p)}(N)$が全射であるとき$f$も全射であることを示せ. 
+
+\item $^{*}$  $\R^{n+1} \setminus \{ 0\}$について, 同値関係$\sim$を
+	$$
+	x \sim y \Leftrightarrow \text{0でない実数$\alpha$が存在して$x = \alpha y$}
+	$$
+	と定義する.$ \R\mathbb{P}^{n}:= \R^{n+1} \setminus \{ 0\}/\sim$と書き実射影空間と呼ぶ.  $ \R\mathbb{P}^{n}$は$n$次元$C^{\infty}$級多様体となることが知られている.  以下$x= (x_{1}, z_{2}, \ldots, x_{n+1})$を$\R\mathbb{P}^{n}$の元とみなしたものを$(x_{1}: \cdots : x_{n+1})$と書き実同次座標と呼ぶ. 
+	次の問いに答えよ.
+	\begin{enumerate}
+	\item 
+	$$
+\begin{array}{ccccc}
+\pi: &S^{n}& \rightarrow & \R\mathbb{P}^{n}& \\
+&(x_{1}, \ldots, x_{n+1}) & \longmapsto & 
+(x_{1}: \cdots : x_{n+1})&
+\end{array}
+$$
+は全射$C^{\infty}$級写像であることをしめせ．
+	\item 任意の$q \in \R\mathbb{P}^{n}$について$f^{-1}(q)$の個数を求めよ.
+	\item $f : S^2 \rightarrow \R^3$を$f(x,y,z)=(yz,zx,xy)$とする. $f$と$\pi$を使って自然に$\tilde{f}: \R\mathbb{P}^{2} \rightarrow \R^3$が定義できることを示せ. 
+	\item $\tilde{f}$ははめ込みではないことをしめせ.
+	\end{enumerate}
+\item$^{**}$上の記法において$g : S^2 \rightarrow \R^4$を$g(x,y,z)=(yz,zx,xy, x^2+2y^2 + 3z^2)$とする. $g$と$\pi$を使って自然に$\tilde{g}: \R\mathbb{P}^{2} \rightarrow \R^4$が定義でき, $\tilde{g}$は埋め込みであることを示せ.
+
+\item$^{**}$ 複素ベクトル空間$\C^{n}$について, その$k$次元ベクトル部分空間全体の集合を$G_{n,k}$とおく. $G_{n,k}$は自然に$C^{\infty}$級多様体の構造を持つことを示し, その次元を求めよ.(複素グラスマン多様体と呼ばれる).
+
+\item $^{**}$ $G_{4,2}$は$\{ (z_0:z_1:z_2:z_3:z_4:z_5) \in  \C\mathbb{P}^{5}| z_0z_5 - z_1z_4 + z_2z_3 =0\}$と$C^{\infty}$級同相であることを示せ. (プリュッカー埋め込みと呼ばれる).
+
+
+
+\item$^{*}$ 授業や演習などこれまで出てきた多様体の例以外で面白い多様体の例をあげよ. ただし以下の点に注意すること.
+	\begin{enumerate}
+	\item この問題は教官とTAが「面白い」と思わない場合, 正答とならない. (例えば$\R^4$の開集合やトーラス・メビウスの帯・クラインの壺などはよく見るので正答とはならない.)
+	\item この問題は複数人が解答して良い.
+	\item この問題の解答権は2022年10月中とする. 11月以後はこの問題に答えることはできない. 
+	\end{enumerate}
+
+%次の問いに答えよ.	
+%	\begin{enumerate}
+%	\item $z_1, \ldot, z_{n}$を$\C^{n}$の座標とする. $1 \ge \alpha_1 < \cdots < \alpha_{k} \ge n$となる自然数の集合$\alpha = (\alpha_1,  \ldots, \alpha_{k})$について
+%	$$U_{\alpha} :~ \{ V \in G_{n,k} | \text{$z_{\alpha_1}, \ldots, z_{\alpha_{k}}$は$V$上で一次独立}\}$$
+%	とおく. 
+	
+%	\item $G_{n,k}$は自然に$C^{\infty}$級多様体の構造を持つことを示し, その次元を求めよ.
+%\end{enumerate}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+$SO(2, \R) $が$S^1$と$C^{\infty}$級微分同相であることをしめせ. 
+\item  
+$$
+SU(2, \C) = \left\{\left(\begin{array}{cc} \alpha& - \overline{\beta}\\ \beta&\overline{\alpha} \end{array}\right) |
+\alpha, \beta \in \C, |\alpha|^2 + |\beta|^2 =1 \right\}$$
+とおく. 次の問いに答えよ.
+	\begin{enumerate}
+	\item $SU(2, \C)$は$S^3$と$C^{\infty}$級微分同相であること示せ. 
+	\item $$
+	\end{enumerate}
+\end{comment}
+
+\end{enumerate}
+ \end{document}
