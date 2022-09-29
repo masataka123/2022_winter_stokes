@@ -81,7 +81,7 @@ https://github.com/masataka123/2022_winter_stokes/blob/master/material/0_ガイ�
 # 問題集に関して
 
 - 問題集はダウンロードした方が良いかと思います.
-- もし資料を一括してダウンロードしたい場合は[こちらのページ](https://github.com/masataka123/2022_winter_stokes/tree/main/material)をご覧ください.
+- もし資料を一括してダウンロードしたい場合は[こちらのページ](https://github.com/masataka123/2022_winter_stokes/tree/master/material)をご覧ください.
 - 著作権は岩井雅崇にあります. 
 - 問題集等に関して何か問題があった場合(例: 何らかの問題でダウンロードできない, 文字化けしている), メールにて私にご連絡していただければ幸いです.
 
