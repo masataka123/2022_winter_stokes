@@ -27,15 +27,15 @@
 演習問題集は次のとおりです. 
 
 [授業の問題集](https://github.com/masataka123/2022_winter_stokes/blob/main/material/0_授業資料.pdf)
-
+https://github.com/masataka123/2022_winter_stokes/blob/master/material/0_ガイダンス資料.pdf
 問題集の修正リスト
 -->
 # 授業日と演習問題のpdf・解かれていない問題リスト
 適宜休講あるいは補講をすることがあるので, こまめにホームページとCLEは確認してください. 
 
-- 第1回 (2022/10/07).  ガイダンス [ガイダンスの資料](https://github.com/masataka123/2022_winter_stokes/blob/main/material/0_ガイダンス資料.pdf)
+- 第1回 (2022/10/07).  ガイダンス [ガイダンスの資料](https://github.com/masataka123/2022_winter_stokes/blob/master/material/0_ガイダンス資料.pdf)
 
-- 第2回 (2022/10/14). [第2-4回の演習問題]](https://github.com/masataka123/2022_winter_stokes/blob/main/material/2_多様体の復習と多様体の例.pdf)
+- 第2回 (2022/10/14). [第2-4回の演習問題](https://github.com/masataka123/2022_winter_stokes/blob/master/material/2_多様体の復習と多様体の例.pdf)
 
 - 第3回 (2022/10/21). 
 
