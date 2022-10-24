@@ -86,6 +86,14 @@
 [第8回から第12回授業の資料](https://github.com/masataka123/2021_summer/blob/master/material/0_第八回から第十二回の資料.pdf)
 -->
 
+# 問題作成にあたり参考にしたもの
+- 松本幸夫 著 多様体の基礎
+- 坪井俊 著 幾何学III 微分形式
+- 河野明, 三村護, 吉岡巌 著 大学院への幾何学演習
+- 大阪大学大学院理学研究科数学専攻博士前期課程 [入試問題](http://www.math.sci.osaka-u.ac.jp/inshi/)
+- 東京大学大学院数理科学研究科 入試問題
+- L. W. Tu An introduction to Manifolds (日本語だと「トゥー 多様体」英語版はSpringer Linkで大学のネットワークから無料で入手可能なはず)
+- 中島啓先生の授業のホームページ [2012年度](https://member.ipmu.jp/hiraku.nakajima/Lecture/12_Kika1.html) [2007年度](https://www.kurims.kyoto-u.ac.jp/~nakajima/Lecture/07_Kika1.html) [2003年度](https://www.kurims.kyoto-u.ac.jp/~nakajima/Lecture/03_Kika1.html) [2000年度](https://member.ipmu.jp/hiraku.nakajima/Lecture/00_Kika2.html)
 
 # 問題集に関して
 
@@ -93,6 +101,7 @@
 - もし資料を一括してダウンロードしたい場合は[こちらのページ](https://github.com/masataka123/2022_winter_stokes/tree/master/material)をご覧ください.
 - 著作権は岩井雅崇にあります. 
 - 問題集等に関して何か問題があった場合(例: 何らかの問題でダウンロードできない, 文字化けしている), メールにて私にご連絡していただければ幸いです.
+
 
 <!-- 
 # 授業動画に関して
