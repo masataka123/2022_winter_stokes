@@ -75,6 +75,8 @@
 
 - 第14回 (2023/02/03). 
 
+第6回授業(2022/11/25)での板書の画像は[こちら](https://github.com/masataka123/2022_winter_stokes/blob/master/material/1_授業板書.pdf))です.
+
 <!--
 # 幾何学1のまとめノート
 
