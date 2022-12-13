@@ -57,8 +57,6 @@
 
 <u>次回発表予定: 2.19 残っている問題: 問2.3, 2.6-2.8, 2.11-13, 2.14-2.16, 2.20-2.25.</u>
 
-第6回授業(2022/11/25)での板書の画像は[こちら](https://github.com/masataka123/2022_winter_stokes/blob/master/material/1_授業板書.pdf)です.
-
 - 第8回 (2022/12/09).  第9回 (2022/12/16). 第10回 (2022/12/23). 第11回 (2023/01/06).  第12回 (2023/01/20). 微分形式とストークスの定理 [第8-12回の演習問題](https://github.com/masataka123/2022_winter_stokes/blob/master/material/8_微分形式とストークスの定理.pdf)
 
 <u> 残っている問題: 問3.1--3.31 </u>
@@ -72,6 +70,12 @@
 <u> 糟谷先生のプリントの問題で解答済みのもの</u>
 
 - 12/9のプリント 問題6
+
+全ての演習問題をまとめました.[第1-12演習問題](https://github.com/masataka123/2022_winter_stokes/blob/master/material/0_幾何学1問題集.pdf)
+
+第6回授業(2022/11/25)での板書の画像は[こちら](https://github.com/masataka123/2022_winter_stokes/blob/master/material/1_授業板書.pdf)です.
+
+
 
 <!--
 # 幾何学1のまとめノート
